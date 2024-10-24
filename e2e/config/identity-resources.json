@@ -1,6 +1,0 @@
-[
-  {
-    "Name": "some-custom-identity",
-    "ClaimTypes": ["some-custom-identity-user-claim"]
-  }
-]
