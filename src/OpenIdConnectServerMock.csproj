@@ -9,10 +9,10 @@
     <IsPackable>true</IsPackable>
     <Description>Configurable mock server with OpenId Connect functionality</Description>
     <VersionPrefix>0.8.2</VersionPrefix>
-    <PackageProjectUrl>https://github.com/Soluto/oidc-server-mock</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/xdev-software/oidc-server-mock</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageTags>OIDC</PackageTags>
-    <RepositoryUrl>https://github.com/Soluto/oidc-server-mock</RepositoryUrl>
+    <RepositoryUrl>https://github.com/xdev-software/oidc-server-mock</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>oidc-mock</ToolCommandName>
