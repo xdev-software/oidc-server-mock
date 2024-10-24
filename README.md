@@ -1,19 +1,20 @@
 # OpenId Connect Server Mock
 
-![Run Tests badge](https://github.com/Soluto/oidc-server-mock/workflows/Run%20Tests/badge.svg)
+> [!NOTE]
+> This is a fork of [Soluto/oidc-server-mock](https://github.com/Soluto/oidc-server-mock)
 
 This project allows you to run configurable mock server with OpenId Connect functionality.
 
-## Important
-
-> Free for development, testing and personal projects. For production you need to purchase [Duende IdentityServer license](https://duendesoftware.com/products/identityserver).
+> [!IMPORTANT]
+> Free for development, testing and personal projects. 
+> For production you need to purchase [Duende IdentityServer license](https://duendesoftware.com/products/identityserver).
 
 ## Simple Configuration
 
 The image is stored in `github` registry. Use the following to pull the image:
 
 ```bash
-docker pull ghcr.io/soluto/oidc-server-mock:latest
+docker pull xdevsoftware/oidc-server-mock:latest
 ```
 
 This is the sample of using the server in `docker-compose` configuration:
@@ -23,7 +24,7 @@ version: '3'
 services:
   oidc-server-mock:
     container_name: oidc-server-mock
-    image: ghcr.io/soluto/oidc-server-mock:latest
+    image: xdevsoftware/oidc-server-mock:latest
     ports:
       - '4011:80'
     environment:
@@ -142,7 +143,7 @@ This is the sample of using the server in `Dockerfile` configuration:
 
 ```
 # Use the base image
-FROM ghcr.io/soluto/oidc-server-mock:0.8.6
+FROM xdevsoftware/oidc-server-mock:0.8.6
 
 # Set environment variables
 # additional configuration can be found in the readme
@@ -343,9 +344,3 @@ There are two ways to use `oidc-server-mock` with this change.
    ```sh
    npm run test
    ```
-
-## Used by
-
-1. [Tweek](https://github.com/Soluto/tweek) blackbox [tests](https://github.com/Soluto/tweek-blackbox).
-
-2. [Stitch](https://github.com/Soluto/Stitch) e2e tests.
