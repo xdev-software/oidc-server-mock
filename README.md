@@ -1,4 +1,4 @@
-# OpenId Connect Server Mock
+# OpenId Connect Server Mock - XDEV Edition
 
 > [!NOTE]
 > This is a fork of [Soluto/oidc-server-mock](https://github.com/Soluto/oidc-server-mock)
