@@ -19,12 +19,12 @@ Usage guide can be found [upstream](https://github.com/Soluto/oidc-server-mock?t
 ## Installation
 [Installation guide for the latest release](https://github.com/xdev-software/oidc-server-mock/releases/latest#Installation)
 
-### DockerHub [![DockerHub latest version](https://img.shields.io/docker/v/xdevsoftware/oidc-server-mock?sort=semver&logo=docker&label=DockerHub) ![DockerHub pull count](https://img.shields.io/docker/pulls/xdevsoftware/oidc-server-mock?logo=docker&label=pulls)](https://hub.docker.com/r/xdevsoftware/oidc-server-mock)
+### [DockerHub ![DockerHub latest version](https://img.shields.io/docker/v/xdevsoftware/oidc-server-mock?sort=semver&logo=docker&label=DockerHub) ![DockerHub pull count](https://img.shields.io/docker/pulls/xdevsoftware/oidc-server-mock?logo=docker&label=pulls)](https://hub.docker.com/r/xdevsoftware/oidc-server-mock)
 ```bash
 docker pull xdevsoftware/oidc-server-mock
 ```
 
-### GitHub Container Registry [![ghcr](https://img.shields.io/badge/ghcr.io-available-blue?logo=docker)](https://github.com/xdev-software/oidc-server-mock/pkgs/container/oidc-server-mock)
+### [GitHub Container Registry ![ghcr](https://img.shields.io/badge/ghcr.io-available-blue?logo=docker)](https://github.com/xdev-software/oidc-server-mock/pkgs/container/oidc-server-mock)
 ```bash
 docker pull ghcr.io/xdev-software/oidc-server-mock
 ```
