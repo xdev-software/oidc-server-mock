@@ -6,7 +6,7 @@
 This project allows you to run configurable mock server with OpenId Connect functionality.
 
 > [!IMPORTANT]
-> Free for development, testing and personal projects. 
+> Free for development, testing and personal projects.<br/>
 > For production you need to purchase [Duende IdentityServer license](https://duendesoftware.com/products/identityserver).
 
 ## Simple Configuration
