@@ -11,7 +11,7 @@ This project allows you to run configurable mock server with OpenId Connect func
 
 ## Simple Configuration
 
-The image is stored in `github` registry. Use the following to pull the image:
+Use the following to pull the image:
 
 ```bash
 docker pull xdevsoftware/oidc-server-mock:latest
@@ -314,33 +314,3 @@ There are two ways to use `oidc-server-mock` with this change.
   }
 }
 ```
-
-## Contributing
-
-### Requirements
-
-1. [Docker](https://www.docker.com/) (version 18.09 or higher)
-
-2. [NodeJS](https://nodejs.org/en/) (version 10.0.0 or higher)
-
-### Getting started
-
-1. Clone the repo:
-
-   ```sh
-   git clone git@github.com:Soluto/oidc-server-mock.git
-   ```
-
-2. Install `npm` packages (run from `/e2e` folder):
-
-   ```sh
-   npm install
-   ```
-
-   > Note: During the build of Docker image UI source code is fetched from [github](https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/tree/main). If you experience some issues on project compile step of Docker build or on runtime try to change the branch or commit in the [script](./src/getmain.sh).
-
-3. Run tests:
-
-   ```sh
-   npm run test
-   ```
