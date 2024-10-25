@@ -11,7 +11,7 @@ COPY ./getui.sh ./getui.sh
 RUN ./getui.sh
 
 COPY ./OpenIdConnectServerMock.csproj ./OpenIdConnectServerMock.csproj
-RUN dotnet restore
+RUN dotnet restore -a $TARGETARCH
 
 COPY . .
 
