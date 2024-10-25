@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS source
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS source
 ARG TARGETARCH
 ARG target="Release"
 
