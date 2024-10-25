@@ -1,4 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "rebaseWhen": "behind-base-branch"
+  "rebaseWhen": "behind-base-branch",
+  "packageRules": [
+    {
+      "description": ".NET images: Use LTS",
+      "packagePattern": "^mcr.microsoft.com/dotnet",
+      "datasources": [
+        "docker"
+      ],
+      "allowedVersions": "<9"
+    }
+  ]
 }
