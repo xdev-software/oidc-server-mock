@@ -20,7 +20,7 @@ RUN dotnet publish -a $TARGETARCH -c $target -o obj/docker/publish
 RUN cp -r /src/obj/docker/publish /OpenIdConnectServerMock
 
 # Stage 2: Release
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS release
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS release
 ARG target="Release"
 
 RUN apk add --no-cache curl
