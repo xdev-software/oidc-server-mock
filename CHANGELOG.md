@@ -1,3 +1,6 @@
+# 1.0.3
+* Update ``YamlDotNet`` to latest version
+
 # 1.0.2
 * Fix ``arm64`` build
 
