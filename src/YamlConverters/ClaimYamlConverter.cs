@@ -12,17 +12,14 @@ namespace OpenIdConnectServer.YamlConverters
             return type == typeof(Claim);
         }
 
-#nullable enable
-        public void WriteYaml(IEmitter emitter, object? value, Type type)
+        public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer rootSerializer)
         {
             throw new NotSupportedException();
         }
-#nullable disable
 
-
-        public object ReadYaml(IParser parser, Type type)
+        public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
         {
-            if (parser.Current.GetType() != typeof(MappingStart)) // You could also use parser.Accept<MappingStart>()
+            if (parser.Current?.GetType() != typeof(MappingStart)) // You could also use parser.Accept<MappingStart>()
             {
                 throw new InvalidDataException("Invalid YAML content.");
             }
@@ -56,6 +53,5 @@ namespace OpenIdConnectServer.YamlConverters
             if (string.IsNullOrEmpty(claimValueType)) claimValueType = ClaimValueTypes.String;
             return new Claim(claimType, claimValue, claimValueType);
         }
-
     }
 }

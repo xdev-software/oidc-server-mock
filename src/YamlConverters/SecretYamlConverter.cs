@@ -12,12 +12,12 @@ namespace OpenIdConnectServer.YamlConverters
             return type == typeof(Secret);
         }
 
-        public void WriteYaml(IEmitter emitter, object value, Type type)
+        public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer rootSerializer)
         {
             throw new NotSupportedException();
         }
 
-        public object ReadYaml(IParser parser, Type type)
+        public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
         {
             string s = parser.Consume<Scalar>().Value;
             return new Secret(s.Sha256());
