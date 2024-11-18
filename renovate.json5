@@ -3,10 +3,22 @@
   "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
-      "description": ".NET images: Use LTS",
+      "description": "Stick with .NET LTS",
       "packagePattern": "^mcr.microsoft.com/dotnet",
       "datasources": [
         "docker"
+      ],
+      "allowedVersions": "<9"
+    },
+    {
+      "description": "Stick with .NET LTS",
+      "matchPackagePatterns": [
+        "^Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+        "^Microsoft.Extensions.FileProviders.Embedded",
+        "^dotnet" 
+      ],
+      "datasources": [
+        "nuget"
       ],
       "allowedVersions": "<9"
     }
