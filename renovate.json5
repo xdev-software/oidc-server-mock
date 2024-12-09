@@ -15,6 +15,7 @@
       "matchPackagePatterns": [
         "^Microsoft.AspNetCore.Mvc.NewtonsoftJson",
         "^Microsoft.Extensions.FileProviders.Embedded",
+        "^Serilog.AspNetCore",
         "^dotnet" 
       ],
       "datasources": [
