@@ -22,6 +22,17 @@
         "nuget"
       ],
       "allowedVersions": "<9"
+    },
+    {
+      "description": "Group aspnetcore",
+      "matchPackagePatterns": [
+        "^Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+        "^Microsoft.Extensions.FileProviders.Embedded"
+      ],
+      "datasources": [
+        "nuget"
+      ],
+      "groupName": "dotnet.aspnetcore"
     }
   ]
 }
