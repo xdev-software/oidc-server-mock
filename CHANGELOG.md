@@ -1,3 +1,7 @@
+# 1.1.0
+* Updated dependencies
+  * Updated ``Duende.IdentityServer`` to ``7.1``
+
 # 1.0.5
 * Updated dependencies
 
@@ -6,8 +10,8 @@
 
 # 1.0.3
 * Updated dependencies
-  * Update ``YamlDotNet`` to latest version
-  * Update ``Duende.IdentityServer`` to latest version to fix [CVE-2024-49755](https://redirect.github.com/DuendeSoftware/IdentityServer/security/advisories/GHSA-v9xq-2mvm-x8xc)
+  * Updated ``YamlDotNet`` to latest version
+  * Updated ``Duende.IdentityServer`` to latest version to fix [CVE-2024-49755](https://redirect.github.com/DuendeSoftware/IdentityServer/security/advisories/GHSA-v9xq-2mvm-x8xc)
 
 # 1.0.2
 * Fix ``arm64`` build
