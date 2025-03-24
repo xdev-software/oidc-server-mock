@@ -1,4 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "rebaseWhen": "behind-base-branch"
+  "rebaseWhen": "behind-base-branch",
+  "packageRules": [
+    {
+      "description": "Stick with .NET LTS",
+      "packagePattern": "^mcr.microsoft.com/dotnet",
+      "datasources": [
+        "docker"
+      ],
+      "allowedVersions": "<9"
+    },
+    {
+      "description": "Stick with .NET LTS",
+      "matchPackagePatterns": [
+        "^Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+        "^Microsoft.Extensions.FileProviders.Embedded",
+        "^Serilog.AspNetCore",
+        "^dotnet" 
+      ],
+      "datasources": [
+        "nuget"
+      ],
+      "allowedVersions": "<9"
+    },
+    {
+      "description": "Group aspnetcore",
+      "matchPackagePatterns": [
+        "^Microsoft.AspNetCore.Mvc.NewtonsoftJson",
+        "^Microsoft.Extensions.FileProviders.Embedded"
+      ],
+      "datasources": [
+        "nuget"
+      ],
+      "groupName": "dotnet.aspnetcore"
+    }
+  ]
 }
