@@ -1,4 +1,4 @@
-﻿using Duende.IdentityServer.Hosting;
+using Duende.IdentityServer.Hosting;
 using Microsoft.Extensions.FileProviders;
 using OpenIdConnectServer;
 using OpenIdConnectServer.Helpers;

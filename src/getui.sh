@@ -2,9 +2,9 @@
 
 set -e
 
-COMMIT="cf4546f6dcded593ca1dc08a343c599a4ad8917e"
+TAG="6.3.0"
 
-SOURCE="https://github.com/DuendeArchive/IdentityServer.Quickstart.UI/archive/$COMMIT.zip"
+SOURCE="https://github.com/DuendeSoftware/IdentityServer.Quickstart.UI/archive/refs/tags/$TAG.zip"
 curl -L -o ui.zip "$SOURCE"
 
 unzip -d ui ui.zip
@@ -12,7 +12,10 @@ unzip -d ui ui.zip
 [[ -d Pages ]] || mkdir Pages
 [[ -d wwwroot ]] || mkdir wwwroot
 
-cp -r ./ui/IdentityServer.Quickstart.UI-$COMMIT/Pages/* Pages
-cp -r ./ui/IdentityServer.Quickstart.UI-$COMMIT/wwwroot/* wwwroot
+cp -r ./ui/IdentityServer.Quickstart.UI-$TAG/Pages/* Pages
+cp -r ./ui/IdentityServer.Quickstart.UI-$TAG/wwwroot/* wwwroot
 
 rm -rf ui ui.zip
+
+# Workaround until https://github.com/DuendeSoftware/IdentityServer.Quickstart.UI/issues/14 is fixed
+find Pages -name "*.cs" -type f -exec sed -i 's/using IdentityModel;/using Duende.IdentityModel;/g' {} +
