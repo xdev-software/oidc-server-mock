@@ -1,0 +1,11 @@
+bin/
+obj/
+
+Pages
+wwwroot
+
+keys/
+tempkey.jwk
+
+Dockerfile
+.dockerignore
