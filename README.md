@@ -4,7 +4,7 @@
 # OpenId Connect Server Mock - XDEV Edition
 
 > [!NOTE]
-> This is a fork of [Soluto/oidc-server-mock](https://github.com/Soluto/oidc-server-mock) that [fixes some problems](./CHANGELOG.md).
+> This is a fork of [Soluto/oidc-server-mock](https://github.com/Soluto/oidc-server-mock) that [fixes some problems](./CHANGELOG.md#100).
 
 This project allows you to run configurable mock server with OpenId Connect functionality.
 
