@@ -1,3 +1,7 @@
+# 1.0.10
+* Backported some cleanup commits from upstream
+* Updated dependencies
+
 # 1.0.9
 * Updated dependencies
 
