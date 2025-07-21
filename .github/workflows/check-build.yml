@@ -1,0 +1,38 @@
+name: Check Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
+      - '.config/**'
+      - '.github/**'
+      - 'assets/**'
+  pull_request:
+    branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
+      - '.config/**'
+      - '.github/**'
+      - 'assets/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    # Build entirely in docker
+    - uses: docker/setup-qemu-action@v3
+
+    - uses: docker/setup-buildx-action@v3
+
+    - uses: docker/build-push-action@v6
+      with:
+        context: ./src
+        push: false
+        tags: oidc-server-mock:experimental
+        platforms: linux/amd64,linux/arm64
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
