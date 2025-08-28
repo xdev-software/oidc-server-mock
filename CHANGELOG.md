@@ -1,4 +1,4 @@
-# 1.0.10
+# 1.1.0
 * Backported some cleanup commits from upstream
 * Updated dependencies
 
