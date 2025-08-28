@@ -1,4 +1,8 @@
-# 1.0.10
+# 1.1.1
+* Updated dependencies
+  * Updated ``Duende.IdentityServer`` to ``7.3``
+
+# 1.1.0
 * Backported some cleanup commits from upstream
 * Updated dependencies
 
