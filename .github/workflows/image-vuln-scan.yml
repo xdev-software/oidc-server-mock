@@ -20,13 +20,13 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Scan - Full
-        uses: aquasecurity/trivy-action@0.33.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           image-ref: ${{ env.TRIVYY_IMAGE_REF }}
 
       - name: Scan - Relevant
         id: scan_relevant
-        uses: aquasecurity/trivy-action@0.33.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           image-ref: ${{ env.TRIVYY_IMAGE_REF }}
           exit-code: 1
@@ -39,7 +39,7 @@ jobs:
         id: find-issue
         if: ${{ always() }}
         run: |
-          echo "number=$(gh issue list -l 'bug' -l 'automated' -L 1 -S 'in:title \"Trivy Vulnerability Report\"' -s 'open' --json 'number' --jq '.[].number')" >> $GITHUB_OUTPUT
+          echo "number=$(gh issue list -l 'bug' -l 'automated' -L 1 -S 'in:title "Trivy Vulnerability Report"' -s 'open' --json 'number' --jq '.[].number')" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -60,7 +60,7 @@ jobs:
 
       - name: Create Issue From File
         if: ${{ failure() && steps.scan_relevant.conclusion == 'failure' }}
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@e8ef132d6df98ed982188e460ebb3b5d4ef3a9cd # v5
         with:
           issue-number: ${{ steps.find-issue.outputs.number }}
           title: Trivy Vulnerability Report
