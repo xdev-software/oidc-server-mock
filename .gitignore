@@ -364,10 +364,6 @@ obj
 # Docker
 .docker
 
-# UI
-src/Pages
-src/wwwroot
-
 # Runtime data
 keys
 tempkey.jwk
