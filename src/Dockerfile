@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS source
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS source
 ARG TARGETARCH
 ARG target="Release"
 
@@ -7,20 +7,17 @@ RUN apk add --no-cache unzip curl bash
 
 WORKDIR /src
 
-COPY ./getui.sh ./getui.sh
-RUN ./getui.sh
-
 COPY ./OpenIdConnectServerMock.csproj ./OpenIdConnectServerMock.csproj
 RUN dotnet restore -a $TARGETARCH
 
 COPY . .
 
-RUN dotnet publish -a $TARGETARCH -c $target -o obj/docker/publish
+RUN dotnet publish -a $TARGETARCH -c $target --property:PublishDir=obj/docker/publish
 
 RUN cp -r /src/obj/docker/publish /OpenIdConnectServerMock
 
 # Stage 2: Release
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS release
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-alpine AS release
 ARG target="Release"
 
 RUN apk add --no-cache curl
@@ -34,7 +31,7 @@ ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 80
 EXPOSE 443
 
-HEALTHCHECK --start-period=2s --interval=1s --timeout=100ms --retries=10 \
+HEALTHCHECK --start-period=2s --interval=5s --timeout=1s --retries=10 \
       CMD curl -k --location https://localhost/health || exit 1
 
 ENTRYPOINT ["dotnet", "OpenIdConnectServerMock.dll" ]

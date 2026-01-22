@@ -1,9 +1,6 @@
 bin/
 obj/
 
-Pages
-wwwroot
-
 keys/
 tempkey.jwk
 

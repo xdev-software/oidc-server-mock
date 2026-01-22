@@ -1,3 +1,8 @@
+# 1.2.0
+* Updated dependencies
+  * Updated ``Duende.IdentityServer`` to ``7.4``
+* Updated to .NET 10
+
 # 1.1.3
 * Updated dependencies
 
