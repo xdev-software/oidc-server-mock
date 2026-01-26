@@ -12,7 +12,7 @@ RUN dotnet restore -a $TARGETARCH
 
 COPY . .
 
-RUN dotnet publish -a $TARGETARCH -c $target --property:PublishDir=obj/docker/publish
+RUN dotnet publish -a $TARGETARCH -c $target -o obj/docker/publish
 
 RUN cp -r /src/obj/docker/publish /OpenIdConnectServerMock
 

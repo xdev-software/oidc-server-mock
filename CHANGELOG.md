@@ -1,3 +1,7 @@
+# 1.2.1
+* Fix broken styling #95
+* Updated dependencies
+
 # 1.2.0
 * Updated dependencies
   * Updated ``Duende.IdentityServer`` to ``7.4``
