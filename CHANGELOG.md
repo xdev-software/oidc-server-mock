@@ -1,3 +1,7 @@
+# 1.2.2
+* Change Docker packaging to be closer to .NET defaults
+  * Fixes broken styling #95
+
 # 1.2.1
 * Fix broken styling #95
 * Updated dependencies
