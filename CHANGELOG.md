@@ -1,3 +1,6 @@
+# 1.2.3
+* Include missing frontend distribution data
+
 # 1.2.2
 * Change Docker packaging to be closer to .NET defaults
   * Fixes broken styling #95
