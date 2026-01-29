@@ -1,7 +1,6 @@
 # Stage 1: Build
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS source
 ARG TARGETARCH
-ARG target="Release"
 
 WORKDIR /src
 
