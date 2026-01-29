@@ -355,7 +355,6 @@ MigrationBackup/
 ## Custom
 # TypeScript project
 node_modules
-dist
 
 # .Net project
 bin
