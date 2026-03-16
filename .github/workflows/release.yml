@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v6
 
     # Build entirely in docker
-    - uses: docker/setup-qemu-action@v3
+    - uses: docker/setup-qemu-action@v4
 
     - uses: docker/setup-buildx-action@v4
 
@@ -98,7 +98,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git pull
 
-    - uses: docker/setup-qemu-action@v3
+    - uses: docker/setup-qemu-action@v4
 
     - uses: docker/setup-buildx-action@v4
 
