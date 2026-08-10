@@ -1,3 +1,7 @@
+# 1.3.0
+* Updated dependencies
+  * Updated `Duende.IdentityServer` to `8`
+
 # 1.2.9
 * Updated dependencies
 
