@@ -16,7 +16,7 @@ public class Index : PageModel
     private readonly IIdentityServerInteractionService _interaction;
     private readonly IEventService _events;
 
-    [BindProperty] 
+    [BindProperty]
     public string LogoutId { get; set; }
 
     public Index(IIdentityServerInteractionService interaction, IEventService events)
@@ -38,14 +38,17 @@ public class Index : PageModel
         }
         else
         {
-            var context = await _interaction.GetLogoutContextAsync(LogoutId);
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken ct = cts.Token;
+
+            var context = await _interaction.GetLogoutContextAsync(LogoutId, ct);
             if (context?.ShowSignoutPrompt == false)
             {
                 // it's safe to automatically sign-out
                 showLogoutPrompt = false;
             }
         }
-            
+
         if (showLogoutPrompt == false)
         {
             // if the request for logout was properly authenticated from IdentityServer, then
@@ -60,16 +63,19 @@ public class Index : PageModel
     {
         if (User?.Identity.IsAuthenticated == true)
         {
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken ct = cts.Token;
+
             // if there's no current logout context, we need to create one
             // this captures necessary info from the current logged in user
             // this can still return null if there is no context needed
-            LogoutId ??= await _interaction.CreateLogoutContextAsync();
-                
+            LogoutId ??= await _interaction.CreateLogoutContextAsync(ct);
+
             // delete local authentication cookie
             await HttpContext.SignOutAsync();
 
             // raise the logout event
-            await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
+            await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()), ct);
 
             // see if we need to trigger federated logout
             var idp = User.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;

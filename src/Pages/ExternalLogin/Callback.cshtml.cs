@@ -33,7 +33,7 @@ public class Callback : PageModel
         _logger = logger;
         _events = events;
     }
-        
+
     public async Task<IActionResult> OnGet()
     {
         // read external identity from the temporary cookie
@@ -82,7 +82,7 @@ public class Callback : PageModel
         var additionalLocalClaims = new List<Claim>();
         var localSignInProps = new AuthenticationProperties();
         CaptureExternalLoginContext(result, additionalLocalClaims, localSignInProps);
-            
+
         // issue authentication cookie for user
         var isuser = new IdentityServerUser(user.SubjectId)
         {
@@ -99,9 +99,12 @@ public class Callback : PageModel
         // retrieve return URL
         var returnUrl = result.Properties.Items["returnUrl"] ?? "~/";
 
+        CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationToken ct = cts.Token;
+
         // check if external login is in the context of an OIDC request
-        var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-        await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.SubjectId, user.Username, true, context?.Client.ClientId));
+        var context = await _interaction.GetAuthorizationContextAsync(returnUrl, ct);
+        await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.SubjectId, user.Username, true, context?.Client.ClientId), ct);
 
         if (context != null)
         {

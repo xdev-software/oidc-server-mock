@@ -9,7 +9,7 @@ namespace IdentityServerHost.Pages.Logout;
 public class LoggedOut : PageModel
 {
     private readonly IIdentityServerInteractionService _interactionService;
-        
+
     public LoggedOutViewModel View { get; set; }
 
     public LoggedOut(IIdentityServerInteractionService interactionService)
@@ -19,8 +19,11 @@ public class LoggedOut : PageModel
 
     public async Task OnGet(string logoutId)
     {
+        CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationToken ct = cts.Token;
+
         // get context information (client name, post logout redirect URI and iframe for federated signout)
-        var logout = await _interactionService.GetLogoutContextAsync(logoutId);
+        var logout = await _interactionService.GetLogoutContextAsync(logoutId, ct);
 
         View = new LoggedOutViewModel
         {

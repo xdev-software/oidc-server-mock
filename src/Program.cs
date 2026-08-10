@@ -1,11 +1,10 @@
-using Duende.IdentityServer.Hosting;
 using Microsoft.Extensions.FileProviders;
 using OpenIdConnectServer;
 using OpenIdConnectServer.Helpers;
 using OpenIdConnectServer.JsonConverters;
-using OpenIdConnectServer.Middlewares;
 using OpenIdConnectServer.Services;
 using OpenIdConnectServer.Validation;
+using OpenIdConnectServerMock.Test;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -46,7 +45,7 @@ builder.Services
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryApiScopes(Config.GetApiScopes())
     .AddInMemoryClients(Config.GetClients())
-    .AddTestUsers(Config.GetUsers())
+    .AddTestUsersImproved(Config.GetUsers())
     .AddRedirectUriValidator<RedirectUriValidator>()
     .AddProfileService<ProfileService>()
     .AddCorsPolicyService<CorsPolicyService>();

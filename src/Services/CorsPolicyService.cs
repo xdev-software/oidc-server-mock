@@ -5,7 +5,7 @@ namespace OpenIdConnectServer.Services
 {
     public class CorsPolicyService : ICorsPolicyService
     {
-        public Task<bool> IsOriginAllowedAsync(string origin)
+        public Task<bool> IsOriginAllowedAsync(string origin, CancellationToken ct)
         {
             var allowedOrigins = Config.GetServerCorsAllowedOrigins();
             if (allowedOrigins != null && allowedOrigins.Count() > 0)

@@ -9,7 +9,7 @@ namespace OpenIdConnectServer.Validation
         protected bool Validate(string requestedUri, ICollection<string> allowedUris) =>
             allowedUris.Any(allowedUri => Regex.Match(requestedUri, Regex.Escape(allowedUri).Replace("\\*", "[a-zA-Z0-9.]+?")).Success);
 
-        public Task<bool> IsPostLogoutRedirectUriValidAsync(string requestedUri, Client client)
+        public Task<bool> IsPostLogoutRedirectUriValidAsync(string requestedUri, Client client, CancellationToken ct)
         {
             return Task.FromResult(Validate(requestedUri, client.PostLogoutRedirectUris));
         }

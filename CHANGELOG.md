@@ -1,3 +1,11 @@
+# 1.3.0
+* User-API (`/api/v1/user`)
+  * Added replace (HTTP PUT) and remove (HTTP DELETE) methods
+  * Adding a user (HTTP POST) now has an option to validate the provided data (use `?validate=true`)
+    * This is disabled by default for performance reasons
+* Updated dependencies
+  * Updated `Duende.IdentityServer` to `8`
+
 # 1.2.9
 * Updated dependencies
 
