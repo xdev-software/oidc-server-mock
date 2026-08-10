@@ -28,13 +28,14 @@ public class Consent : PageModel
     }
 
     public ViewModel View { get; set; }
-        
+
     [BindProperty]
     public InputModel Input { get; set; }
 
     public async Task<IActionResult> OnGet(string id)
     {
-        View = await BuildViewModelAsync(id);
+        CancellationTokenSource cts = new CancellationTokenSource();
+        View = await BuildViewModelAsync(id, cts.Token);
         if (View == null)
         {
             return RedirectToPage("/Home/Error/Index");
@@ -50,8 +51,11 @@ public class Consent : PageModel
 
     public async Task<IActionResult> OnPost()
     {
+        CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationToken ct = cts.Token;
+
         // validate return url is still valid
-        var request = await _interaction.GetLoginRequestByInternalIdAsync(Input.Id);
+        var request = await _interaction.GetLoginRequestByInternalIdAsync(Input.Id, ct);
         if (request == null || request.Subject.GetSubjectId() != User.GetSubjectId())
         {
             _logger.LogError("Invalid id {id}", Input.Id);
@@ -66,7 +70,7 @@ public class Consent : PageModel
             result = new CompleteBackchannelLoginRequest(Input.Id);
 
             // emit event
-            await _events.RaiseAsync(new ConsentDeniedEvent(User.GetSubjectId(), request.Client.ClientId, request.ValidatedResources.RawScopeValues));
+            await _events.RaiseAsync(new ConsentDeniedEvent(User.GetSubjectId(), request.Client.ClientId, request.ValidatedResources.RawScopeValues), ct);
         }
         // user clicked 'yes' - validate the data
         else if (Input?.Button == "yes")
@@ -87,7 +91,7 @@ public class Consent : PageModel
                 };
 
                 // emit event
-                await _events.RaiseAsync(new ConsentGrantedEvent(User.GetSubjectId(), request.Client.ClientId, request.ValidatedResources.RawScopeValues, result.ScopesValuesConsented, false));
+                await _events.RaiseAsync(new ConsentGrantedEvent(User.GetSubjectId(), request.Client.ClientId, request.ValidatedResources.RawScopeValues, result.ScopesValuesConsented, false), ct);
             }
             else
             {
@@ -102,19 +106,19 @@ public class Consent : PageModel
         if (result != null)
         {
             // communicate outcome of consent back to identityserver
-            await _interaction.CompleteLoginRequestAsync(result);
+            await _interaction.CompleteLoginRequestAsync(result, ct);
 
             return RedirectToPage("/Ciba/All");
         }
 
         // we need to redisplay the consent UI
-        View = await BuildViewModelAsync(Input.Id, Input);
+        View = await BuildViewModelAsync(Input.Id, ct, Input);
         return Page();
     }
 
-    private async Task<ViewModel> BuildViewModelAsync(string id, InputModel model = null)
+    private async Task<ViewModel> BuildViewModelAsync(string id, CancellationToken ct, InputModel model = null)
     {
-        var request = await _interaction.GetLoginRequestByInternalIdAsync(id);
+        var request = await _interaction.GetLoginRequestByInternalIdAsync(id, ct);
         if (request != null && request.Subject.GetSubjectId() == User.GetSubjectId())
         {
             return CreateConsentViewModel(model, id, request);

@@ -36,6 +36,9 @@ namespace IdentityServerHost.Pages.ServerSideSessions
         {
             if (_sessionManagementService != null)
             {
+                CancellationTokenSource cts = new CancellationTokenSource();
+                CancellationToken ct = cts.Token;
+
                 UserSessions = await _sessionManagementService.QuerySessionsAsync(new SessionQuery
                 {
                     ResultsToken = Token,
@@ -43,7 +46,7 @@ namespace IdentityServerHost.Pages.ServerSideSessions
                     DisplayName = DisplayNameFilter,
                     SessionId = SessionIdFilter,
                     SubjectId = SubjectIdFilter
-                });
+                }, ct);
             }
         }
 
@@ -52,9 +55,12 @@ namespace IdentityServerHost.Pages.ServerSideSessions
 
         public async Task<IActionResult> OnPost()
         {
-            await _sessionManagementService.RemoveSessionsAsync(new RemoveSessionsContext { 
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken ct = cts.Token;
+
+            await _sessionManagementService.RemoveSessionsAsync(new RemoveSessionsContext {
                 SessionId = SessionId,
-            });
+            }, ct);
             return RedirectToPage("/ServerSideSessions/Index", new { Token, DisplayNameFilter, SessionIdFilter, SubjectIdFilter, Prev });
         }
     }

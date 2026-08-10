@@ -30,6 +30,9 @@ public class AllModel : PageModel
 
     public async Task OnGet()
     {
-        Logins = await _backchannelAuthenticationInteraction.GetPendingLoginRequestsForCurrentUserAsync();
+        CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationToken ct = cts.Token;
+
+        Logins = await _backchannelAuthenticationInteraction.GetPendingLoginRequestsForCurrentUserAsync(ct);
     }
 }

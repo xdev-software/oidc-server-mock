@@ -16,7 +16,7 @@ namespace OpenIdConnectServer.Services
         Logger = logger;
     }
 
-    public Task GetProfileDataAsync(ProfileDataRequestContext context)
+    public Task GetProfileDataAsync(ProfileDataRequestContext context, CancellationToken ct)
     {
         var subjectId = context.Subject.GetSubjectId();
         Logger.LogDebug("Getting profile data for subjectId: {subjectId}", subjectId);
@@ -30,7 +30,7 @@ namespace OpenIdConnectServer.Services
         return Task.CompletedTask;
     }
 
-    public Task IsActiveAsync(IsActiveContext context)
+    public Task IsActiveAsync(IsActiveContext context,  CancellationToken ct)
     {
         var subjectId = context.Subject.GetSubjectId();
         Logger.LogDebug("Checking if the user is active for subjectId: {subject}", subjectId);

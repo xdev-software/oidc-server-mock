@@ -20,14 +20,14 @@ public class Index : PageModel
 
     [BindProperty]
     public InputModel Input { get; set; }
-        
+
     public Index(
         IIdentityServerInteractionService interaction,
         TestUserStore users = null)
     {
         // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
         _users = users ?? throw new Exception("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
-            
+
         _interaction = interaction;
     }
 
@@ -36,21 +36,24 @@ public class Index : PageModel
         Input = new InputModel { ReturnUrl = returnUrl };
         return Page();
     }
-        
+
     public async Task<IActionResult> OnPost()
     {
+        CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationToken ct = cts.Token;
+
         // check if we are in the context of an authorization request
-        var context = await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl);
+        var context = await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl, ct);
 
         // the user clicked the "cancel" button
         if (Input.Button != "create")
         {
             if (context != null)
             {
-                // if the user cancels, send a result back into IdentityServer as if they 
+                // if the user cancels, send a result back into IdentityServer as if they
                 // denied the consent (even if this client does not require consent).
                 // this will send back an access denied OIDC error response to the client.
-                await _interaction.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
+                await _interaction.DenyAuthorizationAsync(context, InteractionError.AccessDenied, ct);
 
                 // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                 if (context.IsNativeClient())
