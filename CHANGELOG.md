@@ -1,3 +1,6 @@
+# 1.3.1
+* Updated dependencies
+
 # 1.3.0
 * User-API (`/api/v1/user`)
   * Added replace (HTTP PUT) and remove (HTTP DELETE) methods
